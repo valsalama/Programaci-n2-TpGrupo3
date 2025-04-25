@@ -2,7 +2,7 @@ package modelo;
 
 import interfaz.IVehiculo;
 
-public class Vehiculo implements IVehiculo{
+public class Vehiculo implements IVehiculo {
 
     private String modelo;
     private String patente;
