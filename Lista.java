@@ -65,11 +65,32 @@ public class Lista implements ILista {
         }
     }
 
-	@Override
-	public void insertarGenerico(Vehiculo dato, int pos) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void insertarGenerico(Vehiculo dato, int pos) {
+        if (pos < 0 || pos > cantidadElementos()) {
+            System.out.println("Error: Posicion fuera de rango");
+            return;
+        }
+        Nodo nuevoNodo = new Nodo(dato); 
+        if (pos == 0) {
+            insertarPrimero(dato); 
+            return;
+        }
+        INodo actual = primero;
+        int contador = 0;
+        while (contador < pos - 1) {
+            actual = actual.getSiguiente();
+            contador++;
+        }
+        INodo siguienteNodo = actual.getSiguiente();
+        actual.setSiguiente(nuevoNodo);
+        nuevoNodo.setAnterior(actual);
+        if (siguienteNodo != null) {
+            nuevoNodo.setSiguiente(siguienteNodo);
+            siguienteNodo.setAnterior(nuevoNodo);
+        }
+    }
+
 
 	@Override
 	public Vehiculo eliminarPrimero() {
@@ -124,9 +145,17 @@ public class Lista implements ILista {
 	}
 	
 	@Override
-	public int obtenerUltimo() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Vehiculo obtenerUltimo() {
+	    if (esVacia()) {
+	        System.out.println("Error: La lista esta vacia");
+	        return null;  
+	    }
+	    
+	    INodo actual = primero;
+	    while (actual.getSiguiente() != null) {
+	        actual = actual.getSiguiente();
+	    }
+	    return actual.getDato();
 	}
 
 	@Override
@@ -148,7 +177,7 @@ public class Lista implements ILista {
 
 	@Override
 	public void ordenar() { //metodo burbujeo
-	    if (esVacia() || primero.getSiguiente() == null) {
+	    if (esVacia() && primero.getSiguiente() == null) {
 	        return;
 	    }
 
@@ -207,6 +236,11 @@ public class Lista implements ILista {
 	}
 	@Override
 	public String toString() {
+		return "Lista [primero=" + primero + "]";
+	}
+	
+}
+
 		return "Lista [primero=" + primero + "]";
 	}
 	
