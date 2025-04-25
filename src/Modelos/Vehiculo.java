@@ -1,39 +1,31 @@
-package Modelos;
+package modelo;
 
-import Interfaces.IVehiculo;
+import interfaz.IVehiculo;
 
 public class Vehiculo implements IVehiculo{
 
-    private String modelo;
-    private String patente;
-
-    // Constructor
-    public Vehiculo(String modelo, String patente) {
-        super();
-        this.modelo = modelo;
-        this.patente = patente;
-    }
+	private String patente;
+	private String modelo;
 	
-    // Getter y Setters
-    // Modelo
-    public String getModelo() {
-        return modelo;
-    }
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    // Patente
-    public String getPatente() {
-        return patente;
-    }
-    public void setPatente(String patente) {
-        this.patente = patente;
-    }
-
-    // String
-    @Override
-    public String toString() {
-        return "Vehiculo [ modelo= " + modelo + ", patente= " + patente + " ]";
-    }
+	public String getPatente() {
+		return patente;
+	}
+	public void setPatente(String patente) {
+		this.patente = patente;
+	}
+	public String getModelo() {
+		return modelo;
+	}
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	@Override
+	public String toString() {
+		return "Vehiculo [patente=" + patente + ", modelo=" + modelo + "]";
+	}
+	public Vehiculo(String patente, String modelo) {
+		super();
+		this.patente = patente;
+		this.modelo = modelo;
+	}
 }
