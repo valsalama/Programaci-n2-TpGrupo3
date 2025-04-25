@@ -49,7 +49,8 @@ public class Lista implements ILista {
     // Retorna el dato del primer nodo
     @Override
     public IVehiculo obtenerPrimero() {
-        if (esVacia()) throw new IllegalStateException("Lista vacía");
+        if (esVacia())
+            throw new IllegalStateException("Lista vacía");
         return primero.getDato();
     }
 
@@ -82,7 +83,7 @@ public class Lista implements ILista {
         if (!esVacia()) {
             if (pos == 0) {
                 insertarPrimero(dato);
-				return;
+                return;
             }
 
             int contador = 0;
@@ -153,8 +154,10 @@ public class Lista implements ILista {
             INodo anteriorEliminado = actual.getAnterior();
             INodo siguienteEliminado = actual.getSiguiente();
 
-            if (anteriorEliminado != null) anteriorEliminado.setSiguiente(siguienteEliminado);
-            if (siguienteEliminado != null) siguienteEliminado.setAnterior(anteriorEliminado);
+            if (anteriorEliminado != null)
+                anteriorEliminado.setSiguiente(siguienteEliminado);
+            if (siguienteEliminado != null)
+                siguienteEliminado.setAnterior(anteriorEliminado);
 
             return actual.getDato();
         } else {
@@ -163,18 +166,18 @@ public class Lista implements ILista {
         }
     }
 
-	// Retorna el dato del último nodo
-	@Override
-	public IVehiculo obtenerUltimo() {
-		if (esVacia()) {
-			throw new IllegalStateException("Lista vacía");
-		}
-		INodo actual = primero;
-		while (actual.getSiguiente() != null) {
-			actual = actual.getSiguiente();
-		}
-		return actual.getDato();
-	}
+    // Retorna el dato del último nodo
+    @Override
+    public IVehiculo obtenerUltimo() {
+        if (esVacia()) {
+            throw new IllegalStateException("Lista vacía");
+        }
+        INodo actual = primero;
+        while (actual.getSiguiente() != null) {
+            actual = actual.getSiguiente();
+        }
+        return actual.getDato();
+    }
 
     // Retorna el dato en una posición específica
     @Override
@@ -199,8 +202,8 @@ public class Lista implements ILista {
     @Override
     public void ordenar() {
         if (esVacia() || primero.getSiguiente() == null) {
-	        return;
-		}
+            return;
+        }
 
         boolean intercambiado;
         do {

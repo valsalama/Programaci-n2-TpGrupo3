@@ -13,12 +13,13 @@ public class Vehiculo implements IVehiculo {
         this.modelo = modelo;
         this.patente = patente;
     }
-	
+
     // Getter y Setters
     // Modelo
     public String getModelo() {
         return modelo;
     }
+
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
@@ -27,6 +28,7 @@ public class Vehiculo implements IVehiculo {
     public String getPatente() {
         return patente;
     }
+
     public void setPatente(String patente) {
         this.patente = patente;
     }
