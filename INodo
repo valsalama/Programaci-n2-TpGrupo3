@@ -6,9 +6,9 @@ public interface INodo {
 	
 	public INodo getAnterior();
 	public void setAnterior(INodo anterior);
-    public Vehiculo getDato();
-    public void setDato(Vehiculo dato);
-    public INodo getSiguiente();
-    public void setSiguiente(INodo nodo);
-    public String toString();
+	public Vehiculo getDato();
+	public void setDato(Vehiculo dato);
+	public INodo getSiguiente();
+	public void setSiguiente(INodo nodo);
+	public String toString();
 }
