@@ -1,18 +1,13 @@
-package Interfaces;
+package interfaz;
 
-import Modelos.Vehiculo;
 
 public interface INodo {
 	
-    // Vehiculo
-    public Vehiculo getDato();
-    public void setDato(Vehiculo dato);
-	
-    // Siguiente
+	public INodo getAnterior();
+	public void setAnterior(INodo anterior);
+    public IVehiculo getDato();
+    public void setDato(IVehiculo dato);
     public INodo getSiguiente();
     public void setSiguiente(INodo nodo);
-
-    // Anterior
-    public INodo getAnterior();
-    public void setAnterior(INodo anterior);
+    public String toString();
 }
