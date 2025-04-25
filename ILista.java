@@ -24,7 +24,7 @@ public interface ILista {
 		
 		//Para obtener
 		public Vehiculo obtenerPrimero(); //metood de cola
-		public int obtenerUltimo(); //metodo de pila
+		public Vehiculo obtenerUltimo(); //metodo de pila
 		public Vehiculo obtenerGenerico(int pos);
 		
 		//Métodos extras
