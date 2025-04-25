@@ -1,6 +1,5 @@
 package interfaz;
 
-
 public interface ILista {
 	
 	//Métodos
