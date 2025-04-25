@@ -4,12 +4,12 @@ import Interfaces.INodo;
 
 public class Nodo implements INodo {
 
-	private Vehiculo dato;
+    private Vehiculo dato;
     private INodo siguiente;
     private INodo anterior;
 
     // Contructor
-	public Nodo(Vehiculo dato) {
+    public Nodo(Vehiculo dato) {
         this.dato = dato;
         this.siguiente = null;
         this.anterior = null;
@@ -26,11 +26,11 @@ public class Nodo implements INodo {
 
     // Anterior
     public INodo getAnterior() {
-		return anterior;
-	}
-	public void setAnterior(INodo anterior) {
-		this.anterior = anterior;
-	}
+    	return anterior;
+    }
+    public void setAnterior(INodo anterior) {
+        this.anterior = anterior;
+    }
 
     // Siguiente
     public INodo getSiguiente() {
@@ -41,8 +41,8 @@ public class Nodo implements INodo {
     }
 
     // String
-	@Override
-	public String toString() {
-		return "Nodo [dato=" + dato + ", siguiente=" + siguiente + ", anterior=" + anterior + "]";
-	}	
+    @Override
+    public String toString() {
+        return "Nodo [dato=" + dato + ", siguiente=" + siguiente + ", anterior=" + anterior + "]";
+    }	
 }
