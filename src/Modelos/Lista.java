@@ -1,60 +1,51 @@
-package Modelos;
+package modelo;
 
-import Interfaces.ILista;
-import Interfaces.INodo;
+import interfaz.ILista;
+import interfaz.INodo;
+import interfaz.IVehiculo;
 
+//Saque la implementación implements ILista, OJO ustedes la mantienen	
 public class Lista implements ILista {
 	
     private INodo primero;
-    private INodo ultimo;
 
-    // Constructor
     public Lista() {
         this.primero = null;
-        this.ultimo = null;
     }
-
-    // Verificar si esta vacio
-    @Override
     public boolean esVacia() {
         return primero == null;
     }
     
-    // Insertar elemento al principioß
-    @Override
-    public void insertarPrimero(Vehiculo dato) {
+    public void insertarPrimero(IVehiculo dato) {
         Nodo nuevo = new Nodo(dato);
     	if(!esVacia()) {
-            primero.setAnterior(nuevo);
-            nuevo.setSiguiente(primero);
-            primero = nuevo;
+    	primero.setAnterior(nuevo);
+        nuevo.setSiguiente(primero);
+        primero = nuevo;
     	}else {
     		primero = nuevo;
-    		ultimo = nuevo;
     	}
     }
 
-    // Insertar elemento al final
-    @Override
-    public void insertarUltimo(Vehiculo dato) {
+    public void insertarUltimo(IVehiculo dato) {
         Nodo nuevo = new Nodo(dato);
         if (esVacia()) {
             primero = nuevo;
-            ultimo = nuevo;
         } else {
-            ultimo.setSiguiente(nuevo);
-            nuevo.setAnterior(ultimo);
-            ultimo=nuevo;
+            INodo actual = primero;
+            while (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
+            }
+            actual.setSiguiente(nuevo);
+            nuevo.setAnterior(actual);
         }
     }
 
-    @Override
-    public Vehiculo obtenerPrimero() {
+    public IVehiculo obtenerPrimero() {
         if (esVacia()) throw new IllegalStateException("Lista vacía");
         return primero.getDato();
     }
 
-    @Override
     public int cantidadElementos() {
         int contador = 0;
         INodo actual = primero;
@@ -66,7 +57,6 @@ public class Lista implements ILista {
         return contador;
     }
 
-    @Override
     public void mostrar() {
         INodo actual = primero;
         while (actual != null) {
@@ -76,51 +66,52 @@ public class Lista implements ILista {
         }
     }
 
-    @Override
-    public void insertarGenerico(Vehiculo dato, int pos) {
-        if (pos < 0 || pos > cantidadElementos()) {
-            System.out.println("Error: Posicion fuera de rango");
-            return;
-        }
-        Nodo nuevoNodo = new Nodo(dato); 
-        if (pos == 0) {
-            insertarPrimero(dato); 
-            return;
-        }
-        INodo actual = primero;
-        int contador = 0;
-        while (contador < pos - 1) {
-            actual = actual.getSiguiente();
-            contador++;
-        }
-        INodo siguienteNodo = actual.getSiguiente();
-        actual.setSiguiente(nuevoNodo);
-        nuevoNodo.setAnterior(actual);
-        if (siguienteNodo != null) {
-            nuevoNodo.setSiguiente(siguienteNodo);
-            siguienteNodo.setAnterior(nuevoNodo);
-        }
-    }
+	@Override
+	public void insertarGenerico(IVehiculo dato, int pos) {
+		Nodo nuevo = new Nodo(dato);
+		if (!esVacia()) {
+			if (pos == 0) {
+				insertarPrimero(dato);
+			}
+			int contador = 0;
+			INodo actual = primero;
+			while (contador < pos && actual.getSiguiente() != null) {
+				contador ++;
+				actual = actual.getSiguiente();
+			}
+			if (actual.getSiguiente() == null) {
+				insertarUltimo(dato);
+			}
+			else {
+				nuevo.setAnterior(actual.getAnterior());
+				nuevo.setSiguiente(actual);
+				actual.getAnterior().setSiguiente(nuevo);
+				actual.setAnterior(nuevo);
+			}
+		}
+		else {
+			System.out.println("Error: La lista esta vacia");
+		}
+		
+	}
 
 	@Override
-	public Vehiculo eliminarPrimero() {
+	public IVehiculo eliminarPrimero() {
 		if (!esVacia()) {
-            if (primero == ultimo) {
-                primero = null;
-                ultimo = null;
-            } else {
-                primero = primero.getSiguiente();
-                primero.setAnterior(null);
-            }
-			return primero.getDato();
-		} else {
+			IVehiculo datoEliminado = primero.getDato();
+			//destructor(primero); //java los resuelve solos no hay que hacerlos
+			primero = primero.getSiguiente();
+			
+			return datoEliminado;
+		}
+		else {
 			System.out.println("Error: Lista vacia.");
 			return null;
 		}
 	}
 
 	@Override
-	public Vehiculo eliminarUltimo() {
+	public IVehiculo eliminarUltimo() {
 		if (esVacia()) {
 			return null;
 		}
@@ -129,14 +120,20 @@ public class Lista implements ILista {
 			while(actual.getSiguiente() != null) {
 				actual = actual.getSiguiente();
 			}
-			INodo anteultimo = actual.getAnterior();
-			anteultimo.setSiguiente(null);
-			return actual.getDato();
+			IVehiculo v = actual.getDato();
+			if (actual == primero) {
+				actual = null;
+				primero = null;
+			}
+			else {
+			(actual.getAnterior()).setSiguiente(null);
+			}
+			return v;
 		}
 	}
 	
 	@Override
-	public Vehiculo eliminarGenerico(int pos) {
+	public IVehiculo eliminarGenerico(int pos) {
 		if (!esVacia() && pos < cantidadElementos()) {
 			int contador = 0;
 			INodo actual = primero;
@@ -146,32 +143,24 @@ public class Lista implements ILista {
 			}
 			INodo anteriorEliminado = actual.getAnterior();
 			INodo siguienteEliminado = actual.getSiguiente();
-			anteriorEliminado.setSiguiente(siguienteEliminado);
-			siguienteEliminado.setAnterior(anteriorEliminado);
+			actual.getAnterior().setSiguiente(siguienteEliminado);
+			actual.getSiguiente().setAnterior(anteriorEliminado);
 			return actual.getDato();
 		}
 		else {
-			System.out.println("Error: La lista esta vacia");
+			System.out.println("Error: La lista esta vacia o la posicion esta fuera de rango.");
 			return null;
 		}
 	}
 	
 	@Override
-	public Vehiculo obtenerUltimo() {
-	    if (esVacia()) {
-	        System.out.println("Error: La lista esta vacia");
-	        return null;  
-	    }
-	    
-	    INodo actual = primero;
-	    while (actual.getSiguiente() != null) {
-	        actual = actual.getSiguiente();
-	    }
-	    return actual.getDato();
+	public int obtenerUltimo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public Vehiculo obtenerGenerico(int pos) {
+	public IVehiculo obtenerGenerico(int pos) {
 		if (!esVacia() && pos < cantidadElementos()) {
 			int contador = 0;
 			INodo actual = primero;
@@ -187,12 +176,12 @@ public class Lista implements ILista {
 		}
 	}
 
-    // Ordenar la lista por patente
 	@Override
-	public void ordenar() {
-	    if (esVacia() && primero.getSiguiente() == null) {
+	public void ordenar() {//metodo burbujeo
+	    if (esVacia() || primero.getSiguiente() == null) {
 	        return;
 	    }
+
 	    boolean intercambiado;
 	    do {
 	        intercambiado = false;
@@ -202,7 +191,7 @@ public class Lista implements ILista {
 	            int comparacionPatente = actual.getDato().getPatente().compareTo(siguiente.getDato().getPatente());
 	            // si la patente actual es mayor que la siguiente los intercambia
 	            if (comparacionPatente > 0) {
-	                Vehiculo temp = actual.getDato();
+	                IVehiculo temp = actual.getDato();
 	                actual.setDato(siguiente.getDato());
 	                siguiente.setDato(temp);
 	                intercambiado = true;
@@ -212,9 +201,8 @@ public class Lista implements ILista {
 	    } while (intercambiado); // repite el proceso si hay intercambios
 	}
 
-    // Buscar un vehiculo en la lista
 	@Override
-	public int buscar(Vehiculo a) {
+	public int buscar(IVehiculo a) {
 		if (!esVacia()) {
 			int contador = 0;
 			INodo actual = primero;
@@ -224,19 +212,31 @@ public class Lista implements ILista {
 			}
 			if (actual.getDato() == a) {
 				return contador;
-			} else {
+			}
+			else {
 				System.out.println("Error: El valor ingresado no se encontró.");
 				return -1;
 			}
-		} else {
+		}
+		else {
 			System.out.println("Error: La lista esta vacia.");
 			return -1;
 		}
 	}
 
 	@Override
+	public INodo getPrimero() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPrimero(INodo primero) {
+		// TODO Auto-generated method stub
+	}
+	@Override
 	public String toString() {
-		return "Lista [ primero=" + primero + " , ultimo=" + ultimo + " ]";
+		return "Lista [primero=" + primero + "]";
 	}
 	
 }
