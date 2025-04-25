@@ -147,10 +147,30 @@ public class Lista implements ILista {
 	}
 
 	@Override
-	public void ordenar() {
-		// TODO Auto-generated method stub
-		
+	public void ordenar() { //metodo burbujeo
+	    if (esVacia() || primero.getSiguiente() == null) {
+	        return;
+	    }
+
+	    boolean intercambiado;
+	    do {
+	        intercambiado = false;
+	        INodo actual = primero;
+	        while (actual.getSiguiente() != null) {
+	            INodo siguiente = actual.getSiguiente();
+	            int comparacionPatente = actual.getDato().getPatente().compareTo(siguiente.getDato().getPatente());
+	            // si la patente actual es mayor que la siguiente los intercambia
+	            if (comparacionPatente > 0) {
+	                Vehiculo temp = actual.getDato();
+	                actual.setDato(siguiente.getDato());
+	                siguiente.setDato(temp);
+	                intercambiado = true;
+	            }
+	            actual = actual.getSiguiente();
+	        }
+	    } while (intercambiado); // repite el proceso si hay intercambios
 	}
+
 
 	@Override
 	public int buscar(Vehiculo a) {
