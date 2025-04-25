@@ -1,4 +1,4 @@
-Autores
+Integrantes
 -------
 Estudiantes de Programación II, UADE.
 - Escalas Pralong, Lola (1188933)
