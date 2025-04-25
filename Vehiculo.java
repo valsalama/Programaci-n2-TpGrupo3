@@ -1,6 +1,8 @@
 package modelo;
 
-public class Vehiculo {
+import interfaz.IVehiculo;
+
+public class Vehiculo implements IVehiculo{
 
 	private String patente;
 	private String modelo;
@@ -26,6 +28,4 @@ public class Vehiculo {
 		this.patente = patente;
 		this.modelo = modelo;
 	}
-	
-	
 }
