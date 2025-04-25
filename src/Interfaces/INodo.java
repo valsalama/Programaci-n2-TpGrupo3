@@ -5,14 +5,14 @@ import Modelos.Vehiculo;
 public interface INodo {
 	
     // Vehiculo
-	public Vehiculo getDato();
-	public void setDato(Vehiculo dato);
+    public Vehiculo getDato();
+    public void setDato(Vehiculo dato);
 	
     // Siguiente
     public INodo getSiguiente();
-	public void setSiguiente(INodo nodo);
+    public void setSiguiente(INodo nodo);
 
     // Anterior
-	public INodo getAnterior();
-	public void setAnterior(INodo anterior);
+    public INodo getAnterior();
+    public void setAnterior(INodo anterior);
 }
