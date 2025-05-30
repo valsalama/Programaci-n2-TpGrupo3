@@ -1,4 +1,4 @@
-package Modelo;
+package model;
 
 public class Persona implements Comparable<Persona>{
 	
