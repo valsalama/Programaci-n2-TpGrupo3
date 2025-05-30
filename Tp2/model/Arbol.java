@@ -84,7 +84,7 @@ public class Arbol {
             return nodoRaiz;
         }
         if (dato < nodoRaiz.getDato()) {
-            return buscarRec(nodoRaiz.getIzquierdo(), dato);
+            return buscarRec(nodoRaiz.getIzquierda(), dato);
         } else {
             return buscarRec(nodoRaiz.getDerecho(), dato);
         }
