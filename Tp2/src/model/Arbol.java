@@ -1,33 +1,35 @@
-package model;
+package Modelo;
 
-import interfaz.IArbol;
+import Interfaz.IArbol;
+import Interfaz.INodo;
+import Interfaz.IPersona;
 
-public class Arbol implements IArbol {
+public class Arbol<T extends IPersona> implements IArbol<T> {
 	
-	private Nodo raiz;
+	private INodo<T> raiz;
 
-	public Nodo getRaiz() {
+	public INodo<T> getRaiz() {
 		return raiz;
 	}
-	public void setRaiz(Nodo raiz) {
+	public void setRaiz(INodo<T> raiz) {
 		this.raiz = raiz;
 	}
 	@Override
 	public String toString() {
 		return "Arbol [raiz=" + raiz + "]";
 	}
-	public Arbol(Nodo raiz) {
+	public Arbol() {
 		super();
 		this.raiz = null;
 	}
 	
-	public void insertar(Persona dato) {
+	public void insertar(T dato) {
 		raiz = insertarRecursivo(raiz, dato);
 	}
 	
-	public Nodo insertarRecursivo(Nodo nodoRaiz, Persona dato) {
+	public INodo<T> insertarRecursivo(INodo<T> nodoRaiz, T dato) {
 		if (nodoRaiz == null) {
-			return new Nodo(dato);
+			return new Nodo<T>(dato);
 		}
 		int comparar = dato.getNombre().compareTo(nodoRaiz.getDato().getNombre());
 		if (comparar < 0){
@@ -36,16 +38,19 @@ public class Arbol implements IArbol {
 		else if (comparar > 0){
 			nodoRaiz.setDerecha(insertarRecursivo(nodoRaiz.getDerecha(), dato));
 		}
+		else {
+			return null; // si se encuentra dni y nombre igual, no se inserta
+		}
 		return nodoRaiz;
 	}
 	
-	public void eliminar(Persona dato) {
+	public void eliminar(T dato) {
 		raiz = eliminarRecursivo(raiz, dato);
 	}
 	
-	public Nodo eliminarRecursivo(Nodo nodoRaiz, Persona dato) {
+	public INodo<T> eliminarRecursivo(INodo<T> nodoRaiz, T dato) {
 		if (nodoRaiz == null) {
-			return new Nodo(dato);
+			return new Nodo<T>(dato);
 		}
 		int comparar = dato.getNombre().compareTo(nodoRaiz.getDato().getNombre());
 		if (comparar < 0){
@@ -64,68 +69,66 @@ public class Arbol implements IArbol {
             if (nodoRaiz.getDerecha() == null) {
                 return nodoRaiz.getIzquierda();
             }
-            Nodo sucesor = encontrarMinimo(nodoRaiz.getDerecha());
+            INodo<T> sucesor = encontrarMinimo(nodoRaiz.getDerecha());
             nodoRaiz.setDato(sucesor.getDato());
             nodoRaiz.setDerecha(eliminarRecursivo(nodoRaiz.getDerecha(), sucesor.getDato()));
 		}
 		return nodoRaiz;
 	}
-	
-	public Nodo encontrarMinimo(Nodo n) {
-        if (n == null) return null;
-        while (n.getIzquierda() != null) {
-            n = n.getIzquierda();
-        }
-        return n;
+
+	public INodo<T> encontrarMinimo(INodo<T> n) {
+		while (n != null) {
+			n = n.getIzquierda();
+		}
+		return n;
+	}
+	public INodo<T> buscar(T dato) {
+        return buscarRecursivo(raiz, dato);
     }
 	
-	public Nodo buscar(Persona dato) {
-        return buscarRec(raiz, dato);
-    }
-	
-	private Nodo buscarRec(Nodo nodo, Persona dato) {
+	public INodo<T> buscarRecursivo(INodo<T> nodo, T dato) {
         if (nodo == null || nodo.getDato().compareTo(dato) == 0) {
             return nodo;
         }
         if (dato.compareTo(nodo.getDato()) < 0) {
-            return buscarRec(nodo.getIzquierda(), dato);
+            return buscarRecursivo(nodo.getIzquierda(), dato);
         } else {
-            return buscarRec(nodo.getDerecha(), dato);
+            return buscarRecursivo(nodo.getDerecha(), dato);
         }
     }
 	
 	public void recorridoInorden() {
-        inordenRec(raiz);
+        inordenRecursivo(raiz);
     }
 	
-	private void inordenRec(Nodo nodo) {
+	public void inordenRecursivo(INodo<T> nodo) {
         if (nodo != null) {
-            inordenRec(nodo.getIzquierda());
+            inordenRecursivo(nodo.getIzquierda());
             System.out.print(nodo.getDato() + " ");
-            inordenRec(nodo.getDerecha());
+            inordenRecursivo(nodo.getDerecha());
         }
     }
 	
 	public void recorridoPreorden() {
-        preordenRec(raiz);
+        preordenRecursivo(raiz);
     }
 	
-	private void preordenRec(Nodo nodo) {
+	public void preordenRecursivo(INodo<T> nodo) {
         if (nodo != null) {
             System.out.print(nodo.getDato() + " ");
-            preordenRec(nodo.getIzquierda());
-            preordenRec(nodo.getDerecha());
+            preordenRecursivo(nodo.getIzquierda());
+            preordenRecursivo(nodo.getDerecha());
         }
     }
 	
 	public void recorridoPostorden() {
-        postordenRec(raiz);
+        postordenRecursivo(raiz);
     }
 	
-	private void postordenRec(Nodo nodo) {
+	public void postordenRecursivo(INodo<T> nodo) {
         if (nodo != null) {
-            postordenRec(nodo.getIzquierda());
-            postordenRec(nodo.getDerecha());
+            postordenRecursivo(nodo.getIzquierda());
+            postordenRecursivo(nodo.getDerecha());
             System.out.print(nodo.getDato() + " ");
         }
     }
