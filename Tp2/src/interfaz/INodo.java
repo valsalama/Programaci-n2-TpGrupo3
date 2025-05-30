@@ -1,7 +1,7 @@
-package Interfaz;
+package interfaz;
 
-import Modelo.Nodo;
-import Modelo.Persona;
+import model.Nodo;
+import model.Persona;
 
 public interface INodo {
 	

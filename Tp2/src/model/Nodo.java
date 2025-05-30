@@ -1,8 +1,8 @@
-package Modelo;
+package model;
 
-import Interfaz.INodo;
+import interfaz.INodo;
 
-public class Nodo implements INodo{
+public class Nodo implements INodo {
 	
 	private Persona dato;
 	private Nodo izquierda;
