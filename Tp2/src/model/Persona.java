@@ -1,6 +1,8 @@
-package model;
+package Modelo;
 
-public class Persona implements Comparable<Persona>{
+import Interfaz.IPersona;
+
+public class Persona implements Comparable<IPersona> , IPersona {
 	
 	private int dni;
 	private String nombre;
@@ -27,7 +29,7 @@ public class Persona implements Comparable<Persona>{
 		this.nombre = nombre;
 	}
 	@Override
-	public int compareTo(Persona p) {
+	public int compareTo(IPersona p) {
 		int comparar = this.nombre.compareTo(p.getNombre());
 		if (comparar == 0) {
 			if (dni < p.getDni()) {
@@ -35,7 +37,10 @@ public class Persona implements Comparable<Persona>{
 			}
 			if (dni > p.getDni()) {
 				return 1;
-			} //ver si las personas tienen mismo dni y nombre que hacemos
+			}
+			else {
+				return 0;
+			}
 		}
 		return comparar;
 	}
