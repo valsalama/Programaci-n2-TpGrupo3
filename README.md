@@ -5,8 +5,8 @@ Contiene todos los trabajos prácticos desarrollados durante el curso.
 
 ## Índice de Trabajos Prácticos
 
-- [TP I – Listas Enlazadas]
-- [TP II – Árbol Binario de Búsqueda (ABB)]
+- TP I – Listas Enlazadas
+- TP II – Árbol Binario de Búsqueda (ABB)
 
 ---
 
