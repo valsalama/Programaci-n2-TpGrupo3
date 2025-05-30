@@ -1,15 +1,12 @@
-package interfaz;
+package Interfaz;
 
-import model.Nodo;
-import model.Persona;
-
-public interface INodo {
+public interface INodo<T extends IPersona> {
 	
-	public Persona getDato();
-	public void setDato(Persona dato);
-	public Nodo getIzquierda();
-	public void setIzquierda(Nodo izquierda);
-	public Nodo getDerecha();
-	public void setDerecha(Nodo derecha);
+	public T getDato();
+	public void setDato(T dato);
+	public INodo<T> getIzquierda();
+	public void setIzquierda(INodo<T> izquierda);
+	public INodo<T> getDerecha();
+	public void setDerecha(INodo<T> derecha);
 	public String toString();
 }
