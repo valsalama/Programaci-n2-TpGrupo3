@@ -80,7 +80,7 @@ public class Arbol {
         return buscarRec(nodoRaiz, dato);
     }
     private INodo buscarRec(INodo nodo, int dato) {
-        if (nodoRaiz == null || nodoRaiz.getDato() == dato) { //|| OR
+        if (nodoRaiz == null || nodoRaiz.getDato() == dato) {
             return nodoRaiz;
         }
         if (dato < nodoRaiz.getDato()) {
