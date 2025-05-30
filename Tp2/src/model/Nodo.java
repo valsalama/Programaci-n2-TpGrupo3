@@ -1,36 +1,38 @@
-package model;
+package Modelo;
 
-import interfaz.INodo;
+import Interfaz.INodo;
+import Interfaz.IPersona;
 
-public class Nodo implements INodo {
+public class Nodo<T extends IPersona> implements INodo<T>{
 	
-	private Persona dato;
-	private Nodo izquierda;
-	private Nodo derecha;
+	private T dato;
+	private INodo<T> izquierda;
+	private INodo<T> derecha;
 	
-	public Persona getDato() {
+	public T getDato() {
 		return dato;
 	}
-	public void setDato(Persona dato) {
+	public void setDato(T dato) {
 		this.dato = dato;
+		
 	}
-	public Nodo getIzquierda() {
+	public INodo<T> getIzquierda() {
 		return izquierda;
 	}
-	public void setIzquierda(Nodo izquierda) {
+	public void setIzquierda(INodo<T> izquierda) {
 		this.izquierda = izquierda;
 	}
-	public Nodo getDerecha() {
+	public INodo<T> getDerecha() {
 		return derecha;
 	}
-	public void setDerecha(Nodo derecha) {
+	public void setDerecha(INodo<T> derecha) {
 		this.derecha = derecha;
 	}
 	@Override
 	public String toString() {
 		return "Nodo [dato=" + dato + ", izquierda=" + izquierda + ", derecha=" + derecha + "]";
 	}
-	public Nodo(Persona dato) {
+	public Nodo(T dato) {
 		super();
 		this.dato = dato;
 		this.izquierda = null;
