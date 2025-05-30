@@ -75,4 +75,37 @@ public class Arbol {
 		}
 		return n;
 	}
+	 @Override
+    public void recorridoInorden() {
+        inordenRec(raiz);
+    }
+    private void inordenRec(INodo nodo) {
+        if (nodo != null) {
+            inordenRec(nodo.getIzquierda());
+            System.out.print(nodo.getDato() + " ");
+            inordenRec(nodo.getDerecho());
+        }
+    }
+    @Override
+    public void recorridoPreorden() {
+        preordenRec(raiz);
+    }
+    private void preordenRec(INodo nodo) {
+        if (nodo != null) {
+            System.out.print(nodo.getDato() + " ");
+            preordenRec(nodo.getIzquierda()); 
+            preordenRec(nodo.getDerecho());
+        }
+    }
+    @Override
+    public void recorridoPostorden() {
+        postordenRec(raiz);
+    }
+    private void postordenRec(INodo nodo) {
+        if (nodo != null) {
+            postordenRec(nodo.getIzquierda());
+            postordenRec(nodo.getDerecho());
+            System.out.print(nodo.getDato() + " ");
+        }
+    }
 }
