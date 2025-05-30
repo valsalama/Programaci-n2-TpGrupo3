@@ -75,15 +75,29 @@ public class Arbol {
 		}
 		return n;
 	}
+	@Override
+    public INodo buscar(Persona dato) {
+        return buscarRec(nodoRaiz, dato);
+    }
+    private INodo buscarRec(INodo nodo, int dato) {
+        if (nodoRaiz == null || nodoRaiz.getDato() == dato) { //|| OR
+            return nodoRaiz;
+        }
+        if (dato < nodoRaiz.getDato()) {
+            return buscarRec(nodoRaiz.getIzquierdo(), dato);
+        } else {
+            return buscarRec(nodoRaiz.getDerecho(), dato);
+        }
+    }
 	 @Override
     public void recorridoInorden() {
         inordenRec(raiz);
     }
     private void inordenRec(INodo nodo) {
-        if (nodo != null) {
-            inordenRec(nodo.getIzquierda());
-            System.out.print(nodo.getDato() + " ");
-            inordenRec(nodo.getDerecho());
+        if (nodoRaiz != null) {
+            inordenRec(nodoRaiz.getIzquierda());
+            System.out.print(nodoRaiz.getDato() + " ");
+            inordenRec(nodoRaiz.getDerecho());
         }
     }
     @Override
@@ -92,9 +106,9 @@ public class Arbol {
     }
     private void preordenRec(INodo nodo) {
         if (nodo != null) {
-            System.out.print(nodo.getDato() + " ");
-            preordenRec(nodo.getIzquierda()); 
-            preordenRec(nodo.getDerecho());
+            System.out.print(nodoRaiz.getDato() + " ");
+            preordenRec(nodoRaiz.getIzquierda()); 
+            preordenRec(nodoRaiz.getDerecho());
         }
     }
     @Override
@@ -102,10 +116,10 @@ public class Arbol {
         postordenRec(raiz);
     }
     private void postordenRec(INodo nodo) {
-        if (nodo != null) {
-            postordenRec(nodo.getIzquierda());
-            postordenRec(nodo.getDerecho());
-            System.out.print(nodo.getDato() + " ");
+        if (nodoRaiz != null) {
+            postordenRec(nodoRaiz.getIzquierda());
+            postordenRec(nodoRaiz.getDerecho());
+            System.out.print(nodoRaiz.getDato() + " ");
         }
     }
 }
