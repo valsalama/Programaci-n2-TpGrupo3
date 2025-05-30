@@ -22,14 +22,9 @@ Una vez creado eso, hacer que una Persona, tenga una Lista de Vehículos (usando
 ## TP II – Árbol Binario de Búsqueda (ABB)
 
 **Enunciado:**  
-Crear una clase cualquiera, por ejemplo `Persona`, e insertar 15 objetos en un **árbol binario de búsqueda**.  
-Implementar la lógica necesaria para permitir comparar los elementos tanto por **DNI** como por **nombre**, y construir el árbol según cada uno de estos criterios.
+Crear una clase cualquiera, por ejemplo, Persona, e insertar en un árbol 15 personas. (Hacer la comparativa por DNI y por nombre).
 
-Luego, realizar búsquedas y eliminaciones, mostrando el árbol en los **tres recorridos clásicos**:
-
-- **Inorden**
-- **Preorden**
-- **Postorden**
+Luego realizar búsquedas y eliminaciones, mostrando el árbol en los 3 sentidos de recorrido siempre.
 
 ---
 
