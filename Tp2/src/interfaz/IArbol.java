@@ -1,4 +1,4 @@
-package Interfaz;
+package interfaz;
 
 public interface IArbol<T extends IPersona> {
 	

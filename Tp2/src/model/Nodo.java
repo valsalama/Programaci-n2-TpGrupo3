@@ -1,7 +1,7 @@
-package Modelo;
+package model;
 
-import Interfaz.INodo;
-import Interfaz.IPersona;
+import interfaz.INodo;
+import interfaz.IPersona;
 
 public class Nodo<T extends IPersona> implements INodo<T>{
 	

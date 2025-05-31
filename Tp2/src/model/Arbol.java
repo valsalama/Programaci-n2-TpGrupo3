@@ -1,8 +1,8 @@
-package Modelo;
+package model;
 
-import Interfaz.IArbol;
-import Interfaz.INodo;
-import Interfaz.IPersona;
+import interfaz.IArbol;
+import interfaz.INodo;
+import interfaz.IPersona;
 
 public class Arbol<T extends IPersona> implements IArbol<T> {
 	
