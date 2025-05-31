@@ -8,7 +8,7 @@ public class TestArbol {
     public static void main(String[] args) {
         // Crear árbol
         System.out.println("=== CREACIÓN DEL ÁRBOL ===");
-        Arbol arbol = new Arbol(null);
+        Arbol arbol = new Arbol();
         System.out.println("Árbol creado. Raíz: " + arbol.getRaiz());
 
         // Crear personas para insertar

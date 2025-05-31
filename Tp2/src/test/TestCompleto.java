@@ -46,7 +46,7 @@ public class TestCompleto {
     }
 
     private static void testArbol() {
-        Arbol arbol = new Arbol(null);
+        Arbol arbol = new Arbol();
         
         // Insertar en orden específico para crear un árbol balanceado
         Persona[] personas = {
@@ -68,7 +68,7 @@ public class TestCompleto {
     }
 
     private static void testCasosExtremos() {
-        Arbol arbol = new Arbol(null);
+        Arbol arbol = new Arbol();
         
         // Caso 1: Árbol vacío
         System.out.println("Árbol vacío - Raíz: " + arbol.getRaiz());

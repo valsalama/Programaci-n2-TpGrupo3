@@ -1,6 +1,6 @@
-package Modelo;
+package model;
 
-import Interfaz.IPersona;
+import interfaz.IPersona;
 
 public class Persona implements Comparable<IPersona> , IPersona {
 	

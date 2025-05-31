@@ -1,8 +1,8 @@
 package test;
 
+import interfaz.INodo;
 import model.Arbol;
 import model.Persona;
-import model.Nodo;
 
 public class TestIntegracion {
 
@@ -10,7 +10,7 @@ public class TestIntegracion {
         System.out.println("=== TEST DE INTEGRACIÓN - ÁRBOL BINARIO ===");
         
         // Crear árbol
-        Arbol arbol = new Arbol(null);
+        Arbol arbol = new Arbol();
         System.out.println("Árbol creado");
         
         // Crear personas
@@ -53,7 +53,7 @@ public class TestIntegracion {
 
         // Probar búsqueda
         System.out.println("\n=== PROBANDO BÚSQUEDA ===");
-        Nodo encontrado = arbol.buscar(p2);
+        INodo encontrado = arbol.buscar(p2);
         if (encontrado != null) {
             System.out.println("Encontrado: " + encontrado.getDato().getNombre());
         } else {
@@ -80,7 +80,7 @@ public class TestIntegracion {
 
         // Probar encontrar mínimo
         System.out.println("\n\n=== ENCONTRAR MÍNIMO ===");
-        Nodo minimo = arbol.encontrarMinimo(arbol.getRaiz());
+        INodo minimo = arbol.encontrarMinimo(arbol.getRaiz());
         if (minimo != null) {
             System.out.println("Mínimo: " + minimo.getDato().getNombre());
         } else {
