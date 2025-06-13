@@ -7,6 +7,8 @@ Contiene todos los trabajos prácticos desarrollados durante el curso.
 
 - TP I – Listas Enlazadas
 - TP II – Árbol Binario de Búsqueda (ABB)
+- TP III - Grafos
+- TPO - Trabajo Final de Grafos Pesados
 
 ---
 
@@ -25,6 +27,21 @@ Una vez creado eso, hacer que una Persona, tenga una Lista de Vehículos (usando
 Crear una clase cualquiera, por ejemplo, Persona, e insertar en un árbol 15 personas. (Hacer la comparativa por DNI y por nombre).
 
 Luego realizar búsquedas y eliminaciones, mostrando el árbol en los 3 sentidos de recorrido siempre.
+
+---
+
+## TP III - Grafos 
+
+**Enunciado:**  
+En base a lo que se viene trabajando en las últimas entregas, se pide que se cree un grado donde todos sus nodos contengan datos del tipo Persona. Recorrer el grafo DFS y BFS. Crear la matriz de Adyacencia. ¿Cómo haría para que el grafo sea dirigido?¿Se puede recorrer igual?. Se espera la mayor geenralidad posible (<T> u Object en los Nodos). Solo en el testeo usar a la Persona. 
+
+---
+
+## TPO - Trabajo Final de Grados Pesados
+
+**Enunciado:**  
+Buscar un problema real que se resuelva con alguno de los 3 algoritmos de Grafos Pesados que vimos en clase. Crear o conseguir un programa que muestre este problema resuelto con alguno de estos algoritmos, bajo TDA.
+Además, crear un PDF breve (3/4 páginas) donde se explique el prolema, la solución y las diferencias si las hay, con el algoritmo mostrado en clase. Además si en la investigación apareció algún otro algoritmo, comentarlo y buscar un testeo bajo TDA.
 
 ---
 
