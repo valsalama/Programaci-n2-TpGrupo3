@@ -1,6 +1,6 @@
 package test;
 
-import sistema.SistemaSubte;
+import modelo.SistemaSubte;
 import java.util.List;
 
 public class TestGrafoBA {
@@ -25,6 +25,11 @@ public class TestGrafoBA {
     public double tarifaFija() {
         return sistema.tarifaFija();
     }
+    
+    public boolean cambioDeLinea(String uno, String dos) {
+    	double peso = sistema.getGrafo().getPesoArista(uno, dos);
+        return peso == 0.1;
+    }
 
     public static void main(String[] args) {
         TestGrafoBA test = new TestGrafoBA();
@@ -38,8 +43,12 @@ public class TestGrafoBA {
         List<String> ruta = test.encontrarRutaMinima(origen, destino);
         if (ruta != null) {
             System.out.println("Ruta mínima de " + origen + " a " + destino + ":");
-            for (String estacion : ruta) {
-                System.out.println(" - " + estacion);
+            for (int i = 0; i < ruta.size() - 1; i++) {
+                System.out.println(" - " + ruta.get(i));
+                if (test.cambioDeLinea(ruta.get(i), ruta.get(i+1))) {
+                	System.out.println("Cambio de linea.");
+                }
+                
             }
             System.out.printf("Distancia total: %.2f km\n", test.calcularDistanciaRuta(ruta));
             System.out.printf("Tarifa: $%.2f ARS\n", test.tarifaFija());
