@@ -1,6 +1,6 @@
 package test;
 
-import sistema.SistemaSubte;
+import modelo.SistemaSubte;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,6 +10,7 @@ public class TestSistemaSubte {
     public static void main(String[] args) {
         SistemaSubte sistema = new SistemaSubte();
         Scanner scanner = new Scanner(System.in);
+        
         
         System.out.println("=== SISTEMA DE SUBTE DE BUENOS AIRES ===");
         System.out.println("Algoritmo de Dijkstra para encontrar rutas óptimas\n");
@@ -21,6 +22,11 @@ public class TestSistemaSubte {
         modoInteractivo(sistema, scanner);
         
         scanner.close();
+    }
+    
+    public static boolean cambioDeLinea(String uno, String dos, SistemaSubte sistema) {
+    	double peso = sistema.getGrafo().getPesoArista(uno, dos);
+        return peso == 0.1;
     }
     
     // Ejecuta un ejemplo predefinido para mostrar el funcionamiento
@@ -83,12 +89,17 @@ public class TestSistemaSubte {
             
             for (int i = 0; i < ruta.size(); i++) {
                 String estacion = ruta.get(i);
+
                 if (i == 0) {
                     System.out.println("   🚇 " + estacion + " (ORIGEN)");
                 } else if (i == ruta.size() - 1) {
                     System.out.println("   🏁 " + estacion + " (DESTINO)");
                 } else {
                     System.out.println("   ↓  " + estacion);
+                }
+                // Solo comparar con la siguiente si existe una siguiente
+                if (i < ruta.size() - 1 && cambioDeLinea(ruta.get(i), ruta.get(i + 1), sistema)) {
+                    System.out.println("Cambio de linea.");
                 }
             }
             
