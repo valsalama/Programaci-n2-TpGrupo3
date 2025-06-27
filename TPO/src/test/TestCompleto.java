@@ -162,9 +162,9 @@ public class TestCompleto {
         testsTotal++;
         if (resultado) {
             testsPasados++;
-            System.out.println("   ✅ " + descripcion);
+            System.out.println("Correcto: " + descripcion);
         } else {
-            System.out.println("   ❌ " + descripcion);
+            System.out.println("Incorrecto: " + descripcion);
         }
     }
 }
