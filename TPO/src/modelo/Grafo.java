@@ -106,7 +106,6 @@ public class Grafo implements IGrafo {
         for (String estacion = destino; estacion != null; estacion = anteriores.get(estacion)) {
             ruta.addFirst(estacion);
         }
-        
         return ruta;
     }
 
