@@ -1,222 +1,139 @@
-package sistema;
+package test;
 
-import modelo.Grafo;
-import modelo.Vertice;
+import modelo.SistemaSubte;
 import java.util.List;
+import java.util.Scanner;
 
-public class SistemaSubte {
-
-    private Grafo grafo;
-
-    public SistemaSubte() {
-        grafo = new Grafo();
-        cargarEstaciones();
-        cargarConexiones();
-    }
-
-    // Carga todas las estaciones de las 5 líneas del subte
-    private void cargarEstaciones() {
-        // LÍNEA A (Celeste)
-        grafo.agregarVertice(new Vertice("San Pedrito"));
-        grafo.agregarVertice(new Vertice("San Jose de Flores"));
-        grafo.agregarVertice(new Vertice("Carabobo"));
-        grafo.agregarVertice(new Vertice("Puan"));
-        grafo.agregarVertice(new Vertice("Primera Junta"));
-        grafo.agregarVertice(new Vertice("Acoyte"));
-        grafo.agregarVertice(new Vertice("Rio de Janeiro"));
-        grafo.agregarVertice(new Vertice("Castro Barros"));
-        grafo.agregarVertice(new Vertice("Loria"));
-        grafo.agregarVertice(new Vertice("Plaza Miserere"));
-        grafo.agregarVertice(new Vertice("Pasco"));
-        grafo.agregarVertice(new Vertice("Alberti"));
-        grafo.agregarVertice(new Vertice("Congreso"));
-        grafo.agregarVertice(new Vertice("Saenz Peña"));
-        grafo.agregarVertice(new Vertice("Lima"));
-        grafo.agregarVertice(new Vertice("Peru"));
-
-        // LÍNEA B (Roja)
-        grafo.agregarVertice(new Vertice("Juan Manuel de Rosas"));
-        grafo.agregarVertice(new Vertice("Echeverria"));
-        grafo.agregarVertice(new Vertice("Los Incas - Parque Chas"));
-        grafo.agregarVertice(new Vertice("Tronador"));
-        grafo.agregarVertice(new Vertice("Federico Lacroze"));
-        grafo.agregarVertice(new Vertice("Dorrego"));
-        grafo.agregarVertice(new Vertice("Malabia - Osvaldo Pugliese"));
-        grafo.agregarVertice(new Vertice("Angel Gallardo"));
-        grafo.agregarVertice(new Vertice("Medrano"));
-        grafo.agregarVertice(new Vertice("Carlos Gardel"));
-        grafo.agregarVertice(new Vertice("Pueyrredon B"));
-        grafo.agregarVertice(new Vertice("Pasteur - AMIA"));
-        grafo.agregarVertice(new Vertice("Callao B"));
-        grafo.agregarVertice(new Vertice("Uruguay"));
-        grafo.agregarVertice(new Vertice("Carlos Pellegrini"));
-        grafo.agregarVertice(new Vertice("Florida"));
-        grafo.agregarVertice(new Vertice("Leandro N. Alem"));
-
-        // LÍNEA C (Azul)
-        grafo.agregarVertice(new Vertice("Retiro C"));
-        grafo.agregarVertice(new Vertice("San Martin"));
-        grafo.agregarVertice(new Vertice("Lavalle"));
-        grafo.agregarVertice(new Vertice("Diagonal Norte"));
-        grafo.agregarVertice(new Vertice("Avenida de Mayo"));
-        grafo.agregarVertice(new Vertice("Moreno"));
-        grafo.agregarVertice(new Vertice("Independencia C"));
-        grafo.agregarVertice(new Vertice("San Juan"));
-        grafo.agregarVertice(new Vertice("Constitucion"));
-
-        // LÍNEA D (Verde)
-        grafo.agregarVertice(new Vertice("Catedral"));
-        grafo.agregarVertice(new Vertice("9 de Julio"));
-        grafo.agregarVertice(new Vertice("Tribunales"));
-        grafo.agregarVertice(new Vertice("Callao D"));
-        grafo.agregarVertice(new Vertice("Facultad de Medicina"));
-        grafo.agregarVertice(new Vertice("Pueyrredon D"));
-        grafo.agregarVertice(new Vertice("Agüero"));
-        grafo.agregarVertice(new Vertice("Bulnes"));
-        grafo.agregarVertice(new Vertice("Scalabrini Ortiz"));
-        grafo.agregarVertice(new Vertice("Palermo"));
-        grafo.agregarVertice(new Vertice("Plaza Italia"));
-        grafo.agregarVertice(new Vertice("Zoo"));
-        grafo.agregarVertice(new Vertice("Ministro Carranza"));
-        grafo.agregarVertice(new Vertice("Olleros"));
-        grafo.agregarVertice(new Vertice("Jose Hernandez"));
-        grafo.agregarVertice(new Vertice("Juramento"));
-        grafo.agregarVertice(new Vertice("Congreso de Tucuman"));
-
-        // LÍNEA E (Violeta)
-        grafo.agregarVertice(new Vertice("Retiro E"));
-        grafo.agregarVertice(new Vertice("Catalinas"));
-        grafo.agregarVertice(new Vertice("Correo Central"));
-        grafo.agregarVertice(new Vertice("Bolivar"));
-        grafo.agregarVertice(new Vertice("Belgrano"));
-        grafo.agregarVertice(new Vertice("Independencia E"));
-        grafo.agregarVertice(new Vertice("San Jose"));
-        grafo.agregarVertice(new Vertice("Entre Rios - Rodolfo Walsh"));
-        grafo.agregarVertice(new Vertice("Pichincha"));
-        grafo.agregarVertice(new Vertice("Jujuy"));
-        grafo.agregarVertice(new Vertice("Urquiza"));
-        grafo.agregarVertice(new Vertice("Boedo"));
-        grafo.agregarVertice(new Vertice("General Urquiza"));
-        grafo.agregarVertice(new Vertice("Emilio Mitre"));
-        grafo.agregarVertice(new Vertice("Medalla Milagrosa"));
-        grafo.agregarVertice(new Vertice("Varela"));
-        grafo.agregarVertice(new Vertice("Plaza de los Virreyes - Eva Peron"));
-    }
-
-    // Carga todas las conexiones entre estaciones con sus distancias
-    private void cargarConexiones() {
-        // CONEXIONES LÍNEA A (distancia promedio: 0.6 km)
-        grafo.agregarArista("San Pedrito", "San Jose de Flores", 0.6);
-        grafo.agregarArista("San Jose de Flores", "Carabobo", 0.6);
-        grafo.agregarArista("Carabobo", "Puan", 0.6);
-        grafo.agregarArista("Puan", "Primera Junta", 0.6);
-        grafo.agregarArista("Primera Junta", "Acoyte", 0.6);
-        grafo.agregarArista("Acoyte", "Rio de Janeiro", 0.6);
-        grafo.agregarArista("Rio de Janeiro", "Castro Barros", 0.6);
-        grafo.agregarArista("Castro Barros", "Loria", 0.6);
-        grafo.agregarArista("Loria", "Plaza Miserere", 0.6);
-        grafo.agregarArista("Plaza Miserere", "Pasco", 0.6);
-        grafo.agregarArista("Pasco", "Alberti", 0.6);
-        grafo.agregarArista("Alberti", "Congreso", 0.6);
-        grafo.agregarArista("Congreso", "Saenz Peña", 0.6);
-        grafo.agregarArista("Saenz Peña", "Lima", 0.6);
-        grafo.agregarArista("Lima", "Peru", 0.6);
-
-        // CONEXIONES LÍNEA B (distancia promedio: 0.7 km)
-        grafo.agregarArista("Juan Manuel de Rosas", "Echeverria", 0.7);
-        grafo.agregarArista("Echeverria", "Los Incas - Parque Chas", 0.7);
-        grafo.agregarArista("Los Incas - Parque Chas", "Tronador", 0.7);
-        grafo.agregarArista("Tronador", "Federico Lacroze", 0.7);
-        grafo.agregarArista("Federico Lacroze", "Dorrego", 0.7);
-        grafo.agregarArista("Dorrego", "Malabia - Osvaldo Pugliese", 0.7);
-        grafo.agregarArista("Malabia - Osvaldo Pugliese", "Angel Gallardo", 0.7);
-        grafo.agregarArista("Angel Gallardo", "Medrano", 0.7);
-        grafo.agregarArista("Medrano", "Carlos Gardel", 0.7);
-        grafo.agregarArista("Carlos Gardel", "Pueyrredon B", 0.7);
-        grafo.agregarArista("Pueyrredon B", "Pasteur - AMIA", 0.7);
-        grafo.agregarArista("Pasteur - AMIA", "Callao B", 0.7);
-        grafo.agregarArista("Callao B", "Uruguay", 0.7);
-        grafo.agregarArista("Uruguay", "Carlos Pellegrini", 0.7);
-        grafo.agregarArista("Carlos Pellegrini", "Florida", 0.7);
-        grafo.agregarArista("Florida", "Leandro N. Alem", 0.7);
-
-        // CONEXIONES LÍNEA C (distancia promedio: 0.5 km)
-        grafo.agregarArista("Retiro C", "San Martin", 0.5);
-        grafo.agregarArista("San Martin", "Lavalle", 0.5);
-        grafo.agregarArista("Lavalle", "Diagonal Norte", 0.5);
-        grafo.agregarArista("Diagonal Norte", "Avenida de Mayo", 0.5);
-        grafo.agregarArista("Avenida de Mayo", "Moreno", 0.5);
-        grafo.agregarArista("Moreno", "Independencia C", 0.5);
-        grafo.agregarArista("Independencia C", "San Juan", 0.5);
-        grafo.agregarArista("San Juan", "Constitucion", 0.5);
-
-        // CONEXIONES LÍNEA D (distancia promedio: 0.65 km)
-        grafo.agregarArista("Catedral", "9 de Julio", 0.65);
-        grafo.agregarArista("9 de Julio", "Tribunales", 0.65);
-        grafo.agregarArista("Tribunales", "Callao D", 0.65);
-        grafo.agregarArista("Callao D", "Facultad de Medicina", 0.65);
-        grafo.agregarArista("Facultad de Medicina", "Pueyrredon D", 0.65);
-        grafo.agregarArista("Pueyrredon D", "Agüero", 0.65);
-        grafo.agregarArista("Agüero", "Bulnes", 0.65);
-        grafo.agregarArista("Bulnes", "Scalabrini Ortiz", 0.65);
-        grafo.agregarArista("Scalabrini Ortiz", "Palermo", 0.65);
-        grafo.agregarArista("Palermo", "Plaza Italia", 0.65);
-        grafo.agregarArista("Plaza Italia", "Zoo", 0.65);
-        grafo.agregarArista("Zoo", "Ministro Carranza", 0.65);
-        grafo.agregarArista("Ministro Carranza", "Olleros", 0.65);
-        grafo.agregarArista("Olleros", "Jose Hernandez", 0.65);
-        grafo.agregarArista("Jose Hernandez", "Juramento", 0.65);
-        grafo.agregarArista("Juramento", "Congreso de Tucuman", 0.65);
-
-        // CONEXIONES LÍNEA E (distancia promedio: 0.66 km)
-        grafo.agregarArista("Retiro E", "Catalinas", 0.66);
-        grafo.agregarArista("Catalinas", "Correo Central", 0.66);
-        grafo.agregarArista("Correo Central", "Bolivar", 0.66);
-        grafo.agregarArista("Bolivar", "Belgrano", 0.66);
-        grafo.agregarArista("Belgrano", "Independencia E", 0.66);
-        grafo.agregarArista("Independencia E", "San Jose", 0.66);
-        grafo.agregarArista("San Jose", "Entre Rios - Rodolfo Walsh", 0.66);
-        grafo.agregarArista("Entre Rios - Rodolfo Walsh", "Pichincha", 0.66);
-        grafo.agregarArista("Pichincha", "Jujuy", 0.66);
-        grafo.agregarArista("Jujuy", "Urquiza", 0.66);
-        grafo.agregarArista("Urquiza", "Boedo", 0.66);
-        grafo.agregarArista("Boedo", "General Urquiza", 0.66);
-        grafo.agregarArista("General Urquiza", "Emilio Mitre", 0.66);
-        grafo.agregarArista("Emilio Mitre", "Medalla Milagrosa", 0.66);
-        grafo.agregarArista("Medalla Milagrosa", "Varela", 0.66);
-        grafo.agregarArista("Varela", "Plaza de los Virreyes - Eva Peron", 0.66);
-
-        // CONEXIONES ENTRE LÍNEAS (transbordos)
-        grafo.agregarArista("Catedral", "Peru", 0.1);           // Línea D ↔ A
-        grafo.agregarArista("Lima", "Avenida de Mayo", 0.1);    // Línea A ↔ C
-        grafo.agregarArista("Independencia C", "Independencia E", 0.1); // Línea C ↔ E
-        grafo.agregarArista("9 de Julio", "Carlos Pellegrini", 0.1);    // Línea D ↔ B
-        grafo.agregarArista("Carlos Pellegrini", "Diagonal Norte", 0.1); // Línea B ↔ C
-    }
-
-    // Encuentra la ruta más corta entre dos estaciones
-    public List<String> encontrarRutaMinima(String origen, String destino) {
-        return grafo.dijkstra(origen, destino);
-    }
-
-    // Calcula la distancia total de una ruta
-    public double calcularDistanciaRuta(List<String> ruta) {
-        if (ruta == null || ruta.size() < 2) return 0;
+// Permite probar diferentes rutas y ver los resultados
+public class TestSistemaSubte {
+    
+    public static void main(String[] args) {
+        SistemaSubte sistema = new SistemaSubte();
+        Scanner scanner = new Scanner(System.in);
         
-        double total = 0;
-        for (int i = 0; i < ruta.size() - 1; i++) {
-            total += grafo.getPesoArista(ruta.get(i), ruta.get(i + 1));
+        
+        System.out.println("=== SISTEMA DE SUBTE DE BUENOS AIRES ===");
+        System.out.println("Algoritmo de Dijkstra para encontrar rutas óptimas\n");
+        
+        // Ejemplo predefinido
+        ejemploPredefinido(sistema);
+        
+        // Modo interactivo
+        modoInteractivo(sistema, scanner);
+        
+        scanner.close();
+    }
+    
+    public static boolean cambioDeLinea(String uno, String dos, SistemaSubte sistema) {
+    	double peso = sistema.getGrafo().getPesoArista(uno, dos);
+        return peso == 0.1;
+    }
+    
+    // Ejecuta un ejemplo predefinido para mostrar el funcionamiento
+    private static void ejemploPredefinido(SistemaSubte sistema) {
+        System.out.println("--- EJEMPLO PREDEFINIDO ---");
+        String origen = "Congreso de Tucuman";
+        String destino = "Independencia E";
+        
+        ejecutarBusqueda(sistema, origen, destino);
+        System.out.println();
+    }
+    
+    // Permite al usuario ingresar estaciones manualmente
+    private static void modoInteractivo(SistemaSubte sistema, Scanner scanner) {
+        System.out.println("--- MODO INTERACTIVO ---");
+        System.out.println("Ingrese las estaciones (o 'salir' para terminar):");
+        
+        while (true) {
+            System.out.print("\nEstación de origen: ");
+            String origen = scanner.nextLine().trim();
+            
+            if (origen.equalsIgnoreCase("salir")) {
+                System.out.println("¡Gracias por usar el sistema!");
+                break;
+            }
+            
+            System.out.print("Estación de destino: ");
+            String destino = scanner.nextLine().trim();
+            
+            if (destino.equalsIgnoreCase("salir")) {
+                System.out.println("¡Gracias por usar el sistema!");
+                break;
+            }
+            
+            ejecutarBusqueda(sistema, origen, destino);
         }
-        return total;
     }
+    
+    // Ejecuta la búsqueda de ruta y muestra los resultados
+    private static void ejecutarBusqueda(SistemaSubte sistema, String origen, String destino) {
+        // Verificar que las estaciones existen
+        if (!sistema.existeEstacion(origen)) {
+            System.out.println("La estación '" + origen + "' no existe en el sistema.");
+            return;
+        }
+        
+        if (!sistema.existeEstacion(destino)) {
+            System.out.println("La estación '" + destino + "' no existe en el sistema.");
+            return;
+        }
+        
+        // Buscar la ruta óptima
+        List<String> ruta = sistema.encontrarRutaMinima(origen, destino);
+        
+        if (ruta != null && !ruta.isEmpty()) {
+            System.out.println("RUTA ENCONTRADA:");
+            System.out.println("Desde: " + origen);
+            System.out.println("Hasta: " + destino);
+            System.out.println("\n Recorrido:");
+            
+            for (int i = 0; i < ruta.size(); i++) {
+                String estacion = ruta.get(i);
 
-    // Retorna la tarifa fija del subte (2025)
-    public double tarifaFija() {
-        return 890.0;
+                if (i == 0) {
+                    System.out.println("   🚇 " + estacion + " (ORIGEN)");
+                } else if (i == ruta.size() - 1) {
+                    System.out.println("   🏁 " + estacion + " (DESTINO)");
+                } else {
+                    System.out.println("   ↓  " + estacion);
+                }
+                // Solo comparar con la siguiente si existe una siguiente
+                if (i < ruta.size() - 1 && cambioDeLinea(ruta.get(i), ruta.get(i + 1), sistema)) {
+                    System.out.println("Cambio de linea.");
+                }
+            }
+            
+            double distancia = sistema.calcularDistanciaRuta(ruta);
+            double tarifa = sistema.tarifaFija();
+            
+            System.out.println("\n INFORMACIÓN DEL VIAJE:");
+            System.out.printf("   • Distancia total: %.2f km\n", distancia);
+            System.out.printf("   • Número de estaciones: %d\n", ruta.size());
+            System.out.printf("   • Transbordos: %d\n", contarTransbordos(ruta));
+            System.out.printf("   • Tarifa: $%.2f ARS\n", tarifa);
+            
+        } else {
+            System.out.println("No se encontró una ruta entre las estaciones especificadas.");
+        }
     }
-
-    // Verifica si una estación existe en el sistema
-    public boolean existeEstacion(String estacion) {
-        return grafo.existeVertice(estacion);
+    
+    // Cuenta aproximadamente los transbordos necesarios
+    // (Simplificado - en la realidad sería más complejo)
+    private static int contarTransbordos(List<String> ruta) {
+        if (ruta.size() <= 2) return 0;
+        
+        int transbordos = 0;
+        for (String estacion : ruta) {
+            // Las estaciones de transbordo suelen tener sufijos o nombres específicos
+            if (estacion.contains("Independencia") || 
+                estacion.contains("Carlos Pellegrini") ||
+                estacion.contains("Catedral") ||
+                estacion.contains("Peru") ||
+                estacion.contains("Lima") ||
+                estacion.contains("9 de Julio")) {
+                transbordos++;
+            }
+        }
+        return Math.max(0, transbordos - 1); // Restar 1 porque el destino no cuenta como transbordo
     }
 }
