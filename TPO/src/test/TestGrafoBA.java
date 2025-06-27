@@ -79,7 +79,7 @@ public class TestGrafoBA {
         List<String> ruta = test.encontrarRutaMinima(origen, destino);
         
         if (ruta != null) {
-            System.out.println("✅ " + origen + " → " + destino);
+            System.out.println(origen + " → " + destino);
             System.out.println("   Estaciones: " + ruta.size());
             System.out.printf("   Distancia: %.2f km\n", test.calcularDistanciaRuta(ruta));
             
@@ -90,7 +90,7 @@ public class TestGrafoBA {
                 System.out.println("   Ruta: " + ruta.get(0) + " → ... → " + ruta.get(ruta.size()-1));
             }
         } else {
-            System.out.println("❌ " + origen + " → " + destino + " (No encontrada)");
+            System.out.println( origen + " → " + destino + " (No encontrada)");
         }
     }
 }
