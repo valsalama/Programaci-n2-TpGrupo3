@@ -1,6 +1,6 @@
 package test;
 
-import sistema.SistemaSubte;
+import modelo.SistemaSubte;
 import java.util.List;
 import java.util.Arrays;
 
