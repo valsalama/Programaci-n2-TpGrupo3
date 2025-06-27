@@ -63,12 +63,12 @@ public class TestSistemaSubte {
     private static void ejecutarBusqueda(SistemaSubte sistema, String origen, String destino) {
         // Verificar que las estaciones existen
         if (!sistema.existeEstacion(origen)) {
-            System.out.println("❌ La estación '" + origen + "' no existe en el sistema.");
+            System.out.println("La estación '" + origen + "' no existe en el sistema.");
             return;
         }
         
         if (!sistema.existeEstacion(destino)) {
-            System.out.println("❌ La estación '" + destino + "' no existe en el sistema.");
+            System.out.println("La estación '" + destino + "' no existe en el sistema.");
             return;
         }
         
@@ -76,10 +76,10 @@ public class TestSistemaSubte {
         List<String> ruta = sistema.encontrarRutaMinima(origen, destino);
         
         if (ruta != null && !ruta.isEmpty()) {
-            System.out.println("✅ RUTA ENCONTRADA:");
+            System.out.println("RUTA ENCONTRADA:");
             System.out.println("Desde: " + origen);
             System.out.println("Hasta: " + destino);
-            System.out.println("\n📍 Recorrido:");
+            System.out.println("\n Recorrido:");
             
             for (int i = 0; i < ruta.size(); i++) {
                 String estacion = ruta.get(i);
@@ -95,14 +95,14 @@ public class TestSistemaSubte {
             double distancia = sistema.calcularDistanciaRuta(ruta);
             double tarifa = sistema.tarifaFija();
             
-            System.out.println("\n📊 INFORMACIÓN DEL VIAJE:");
+            System.out.println("\n INFORMACIÓN DEL VIAJE:");
             System.out.printf("   • Distancia total: %.2f km\n", distancia);
             System.out.printf("   • Número de estaciones: %d\n", ruta.size());
             System.out.printf("   • Transbordos: %d\n", contarTransbordos(ruta));
             System.out.printf("   • Tarifa: $%.2f ARS\n", tarifa);
             
         } else {
-            System.out.println("❌ No se encontró una ruta entre las estaciones especificadas.");
+            System.out.println("No se encontró una ruta entre las estaciones especificadas.");
         }
     }
     
